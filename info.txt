@@ -1,0 +1,27 @@
+2.Try (at least) the following code parameters:
+a. mpirun ./a3-mpi --m 2688 --n 4096 --epsilon 0.01 --max-iterations 1000
+b. mpirun ./a3-mpi --m 2688 --n 4096 --epsilon 0.01 --max-iterations 1500
+c. mpirun ./a3-mpi --m 1152 --n 1152 --epsilon 0.01 --max-iterations 1000
+
+3. Run (at least) using the following cluster configurations:
+a. 1 node using 2, 4, 8, 16 and 32 MPI processes
+b. 2 nodes, 32 processes
+c. 4 nodes, 64 processes
+
+
+Sequential version:
+Compile: g++ -O2 -lm -o a3 a3.cpp
+Run: ./a3 <arguments>
+*you may need to also provide -std=c++17 or -std=c++20 switch on your machine
+
+MPI version:
+Compile: mpic++ -O2 -lm -o a3-mpi a3-mpi.cpp
+Run: mpirun -np <num_processes> a3 <arguments> 
+
+
+#!/bin/bash
+#SBATCH -N 4
+#SBATCH --ntasks 16
+#SBATCH -t 200
+mpirun ./a3 --m 2688 --n 4096 --epsilon 0.001 --max-iterations 1000
+
